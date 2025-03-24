@@ -87,7 +87,7 @@ def scrape_flipkart(product_url, debug_mode=True):
                     title = title_element.text_content().strip()
                     break
 
-            price_selectors = ["div.Nx9bqj CxhGGd","div.UOCQB1","div._30jeq3._1_WHN1", "div._30jeq3", "[data-testid='price-display']"]
+            price_selectors = ["div.Nx9bqj CxhGGd","div.Nx9bqj CxhGGd","div.UOCQB1","div._30jeq3._1_WHN1", "div._30jeq3", "[data-testid='price-display']"]
             price = "Price not found"
             for selector in price_selectors:
                 price_element = page.locator(selector)
@@ -95,7 +95,7 @@ def scrape_flipkart(product_url, debug_mode=True):
                     price = price_element.text_content().strip()
                     break
 
-            review_selectors = ["_8-rIO3","div.DOjaWF.gdgoEp","div.t-ZTKy", "div._16PBlm", "div[data-testid='review-container']"]
+            review_selectors = ["cPHDOP col-12-12","div.DOjaWF gdgoEp","div.col pPAw9M","_8-rIO3","div.DOjaWF.gdgoEp","div.t-ZTKy", "div._16PBlm", "div[data-testid='review-container']"]
             reviews = []
             for selector in review_selectors:
                 review_elements = page.locator(selector).all()
@@ -113,10 +113,23 @@ def scrape_flipkart(product_url, debug_mode=True):
                 qanda_elements = page.locator(selector).all()
                 if qanda_elements:
                     ans = [elem.text_content().strip() for elem in qanda_elements if len(elem.text_content().strip()) > 5]
-                    break
+                    break 
+            img = ["div._8id3KM _1NsuIS","div._8id3KM","img.DByuf4.IZexXJ.jLEJ7H","div.vU5WPQ","div._4WELSP _6lpKCl"]
+            
+            image_url = "Image not found"
+            for selector in img:
+                try:
+                    image_element = page.locator(selector).first
+                    if image_element:
+                        image_url = image_element.get_attribute("src")
+                        if image_url:
+                            break
+                except:
+                    continue
+
 
             browser.close()
-            return {"title": title or "title not found", "price": price or "price not found", "reviews": reviews if reviews else ["No reviews found"], "qandas": ans if qandas else []}
+            return {"title": title or "title not found", "price": price or "price not found", "reviews": reviews if reviews else ["No reviews found"], "qandas": ans if qandas else [], "image": image_url if img else "Image not found"}
 
     except Exception as e:
         print(f"Error scraping Flipkart: {e}")
@@ -131,11 +144,10 @@ def analyze_sentiment(reviews):
     analyzer = SentimentIntensityAnalyzer()
     return [analyzer.polarity_scores(review) for review in reviews]
 
-def summarize_reviews(reviews):
-    summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
+# def summarize_reviews(reviews):
+#     summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
     
-    # Ensure minimum text length
-    if len(" ".join(reviews)) < 20:
-        return "Not enough data to summarize."
+#     if len(" ".join(reviews)) < 20:
+#         return "Not enough data to summarize."
     
-    return summarizer(" ".join(reviews)[:1024], max_length=150, min_length=20, do_sample=False)[0]["summary_text"]
+#     return summarizer(" ".join(reviews)[:1024], max_length=150, min_length=20, do_sample=False)[0]["summary_text"]

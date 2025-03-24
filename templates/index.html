@@ -1,13 +1,21 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flipkart Review Bot</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
+        input, button { padding: 10px; width: 60%; margin-top: 10px; }
+        img { max-width: 300px; display: block; margin: 20px auto; }
+        .review-list, .sentiments { text-align: left; margin: 20px auto; width: 60%; }
+        .review-list li, .sentiments li { margin-bottom: 10px; }
+    </style>
 </head>
 <body>
     <h1>Flipkart Review Bot</h1>
-    <form method="POST">
+
+    <form method="post">
         <input type="text" name="url" placeholder="Enter Flipkart URL" required>
         <button type="submit">Get Reviews</button>
     </form>
@@ -15,9 +23,42 @@
     {% if data %}
         <h2>{{ data.title }}</h2>
         <p><strong>Price:</strong> {{ data.price }}</p>
+        <img src="{{ data.image if data.image else 'https://via.placeholder.com/300' }}" alt="Product Image">
+        
         <h3>Review Summary:</h3>
         <p>{{ data.summary }}</p>
-        <h3>{{data.qandas}}</h3>
+
+        <h3>Reviews:</h3>
+        <ul class="review-list">
+            {% for review in data.reviews %}
+                <li>⭐ {{ review }}</li>
+            {% endfor %}
+        </ul>
+
+        <h3>Sentiment Analysis:</h3>
+        <ul class="sentiments">
+            {% for sentiment in data.sentiments %}
+                <li>{{ sentiment }}</li>
+            {% endfor %}
+        </ul>
     {% endif %}
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flipkart Review Bot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Flipkart Review Bot</h1>
+        <form method="post">
+            <input type="text" name="url" placeholder="Enter Flipkart URL" required>
+            <button type="submit">Analyze</button>
+        </form>
+    </div>
 </body>
 </html>
