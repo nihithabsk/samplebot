@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flipkart Review Bot</title>
+</head>
+<body>
+    <h1>Flipkart Review Bot</h1>
+    <form method="POST">
+        <input type="text" name="url" placeholder="Enter Flipkart URL" required>
+        <button type="submit">Get Reviews</button>
+    </form>
+
+    {% if data %}
+        <h2>{{ data.title }}</h2>
+        <p><strong>Price:</strong> {{ data.price }}</p>
+        <h3>Review Summary:</h3>
+        <p>{{ data.summary }}</p>
+        <h3>{{data.qandas}}</h3>
+    {% endif %}
+</body>
+</html>
