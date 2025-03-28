@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap');
 body {
     font-family: Arial, sans-serif;
     text-align: center;
@@ -58,4 +59,220 @@ ul li {
 }
 .btn:hover {
     background: #0056b3;
+}
+/* Import Google Fonts */
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    
+    /* Use both gradient and image */
+    background-image: linear-gradient(-45deg, rgba(106, 17, 203, 0.8), rgba(37, 117, 252, 0.8), rgba(246, 141, 159, 0.8), rgba(255, 126, 179, 0.8)), 
+                      url('/static/images/login.png');  
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+    animation: gradientBG 10s ease infinite;
+}
+
+/* Dashboard Page Background */
+.dashboard-page {
+    background-image: url('/static/images/productimg.jpeg'); /* Directly provide the path */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Product Page Background */
+.product-page {
+    background-image: url('/static/images/productimg.jpeg'); /* Same here */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* 🌟 Updated Container for a Lighter Look */
+.container {
+    width: 400px;
+    padding: 30px;
+    border-radius: 15px;
+
+    /* Softer Glassmorphism */
+    backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.2); /* Increased transparency for a softer look */
+    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.15), 
+                inset 0px 2px 8px rgba(255, 255, 255, 0.15); /* Lighter shadow effect */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+    position: relative;
+    overflow: hidden;
+}
+
+/* 🌈 Soft Gradient Border Effect */
+.container::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, rgba(255, 117, 140, 0.6), rgba(152, 95, 213, 0.6), rgba(73, 131, 231, 0.6));
+    z-index: -1;
+    border-radius: 15px;
+    filter: blur(8px);
+}
+
+/* Move the container to the right for Dashboard and Product pages */
+.dashboard-page .container,
+.product-page .container {
+    position: absolute;
+    right: 50px; /* Adjust as needed */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Smooth Fade-in */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+.forgot-password,
+.switch-form a {
+    color: white !important;  /* Ensures text color is white */
+    text-decoration: none;  /* Removes underline */
+    transition: 0.3s ease-in-out;
+}
+
+.forgot-password:hover,
+.switch-form a:hover {
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);  /* Adds a soft glowing effect */
+}
+
+.form-box {
+    position: relative;
+    width: 100%;
+}
+
+.button-box {
+    display: flex;
+    justify-content: space-between;
+}
+
+.toggle-btn {
+    flex: 1;
+    padding: 10px;
+    background: #ddd;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.toggle-btn:hover {
+    background: #2575fc;
+    color: white;
+    box-shadow: 0px 0px 10px #2673f9;
+}
+
+.input-group {
+    display: none;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.input-group h2 {
+    text-align: center;
+    font-weight: 500;
+    color: #fff;
+}
+
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.input-field:focus {
+    border-color: #2575fc;
+    box-shadow: 0 0 5px #2575fc;
+    outline: none;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 10px;
+    background: #2575fc;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.submit-btn:hover {
+    background: #6a11cb;
+    box-shadow: 0 0 15px #6a11cb;
+}
+
+.forgot-password {
+    font-size: 14px;
+    text-align: right;
+    display: block;
+    color: #2575fc;
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: 0.3s ease-in-out;
+}
+
+.forgot-password:hover {
+    text-shadow: 0 0 10px #6a11cb;
+}
+
+.switch-form {
+    text-align: center;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.switch-form a {
+    color: #2575fc;
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
+}
+
+.switch-form a:hover {
+    text-shadow: 0 0 10px #6a11cb;
+}
+
+/* Show login form by default */
+#login {
+    display: flex;
 }

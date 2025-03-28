@@ -87,7 +87,7 @@ def scrape_flipkart(product_url, debug_mode=True):
                     title = title_element.text_content().strip()
                     break
 
-            price_selectors = ["div.Nx9bqj CxhGGd","div.Nx9bqj CxhGGd","div.UOCQB1","div._30jeq3._1_WHN1", "div._30jeq3", "[data-testid='price-display']"]
+            price_selectors = ["div.Nx9bqj CxhGGd","div.Nx9bqj CxhGGd","div.Nx9bqj CxhGGd","div.UOCQB1","div._30jeq3._1_WHN1", "div._30jeq3", "[data-testid='price-display']"]
             price = "Price not found"
             for selector in price_selectors:
                 price_element = page.locator(selector)

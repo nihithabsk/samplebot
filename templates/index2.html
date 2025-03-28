@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter Product Link</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <body class="product-page">
+
+    <div class="container">
+        <h2>Please enter your product link</h2>
+        <form action="/product" method="POST">
+            <input type="url" name="product_link" class="input-field" placeholder="Enter Product Link" required>
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
